@@ -12,13 +12,14 @@ const Home = () => {
 	
     return (
     <div className="container">
-        <input id='taskInput' className='input' type="text" onKeyDown={(e) => { // onKeyDown escucha cuando se presiona una tecla
+        <input id='taskInput' className='input' type="text" placeholder={
+            taskList.length === 0 ? "No hay tareas, añade una" :"¿Te sobra tiempo? Añade otra tarea"}
+            onKeyDown={(e) => { // onKeyDown escucha cuando se presiona una tecla
             if (e.key === 'Enter' && e.target.value.trim() !== ''){ // valida si la tecla presionada es Enter y si no son espacios en blanco (trim()) o nada
                 setTaskList([...taskList, e.target.value]); // agrega el valor que se ingreso en input  
                 e.target.value = '' //Limpia el valor de input después de que se 'carga la tarea' 
             }
         }}
-        placeholder="¿Qué vas a hacer hoy?"
         />
 		<ul className="list">
             {taskList.map((item, index) => // recorre task list y devuelve el HTML. Asigna el index a key y el elemento al item <li>
